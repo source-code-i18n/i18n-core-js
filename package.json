@@ -1,0 +1,38 @@
+{
+  "name": "i18n-core",
+  "version": "0.0.1",
+  "description": "Core javascript logic to translate source code from one natural language to another.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run build:dev && jest",
+    "build:dev": ""
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/source-code-i18n/i18n-core-js.git"
+  },
+  "keywords": [
+    "i18n",
+    "translation",
+    "lexer"
+  ],
+  "author": "Andrew Ottaviano",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/source-code-i18n/i18n-core-js/issues"
+  },
+  "homepage": "https://github.com/source-code-i18n/i18n-core-js#readme",
+  "dependencies": {
+    "eslint": "^7.22.0",
+    "jest": "^26.6.3"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.13.12",
+    "babel-jest": "^26.6.3"
+  }
+}
