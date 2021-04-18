@@ -2,16 +2,15 @@
 import Translator from '../src/Translator';
 
 describe('Translator', () => {
-  let sut;
   it('translates successfully', () => {
     const inputStream = `
     clase Test {
       esta.helloThere = 'Hola';
       constante myFunction = () => {
         si(verdadero) {
-          consola.registro('Es verdad');
+          console.log('Es verdad');
         } demás {
-          consola.registro('Es falso');
+          console.log('Es falso');
         }
 
         regreso esta.helloThere;
@@ -19,16 +18,17 @@ describe('Translator', () => {
     }`;
 
     const languageMap = {
-      si: 'if',
-      esta: 'this',
-      falso: 'false',
-      registro: 'log',
-      clase: 'class',
-      demás: 'else',
-      regreso: 'return',
-      verdadero: 'true',
-      constante: 'const',
-      consola: 'console',
+      keywords: {
+        si: 'if',
+        esta: 'this',
+        falso: 'false',
+        clase: 'class',
+        registro: 'log',
+        demás: 'else',
+        regreso: 'return',
+        verdadero: 'true',
+        constante: 'const',
+      }
     };
 
     const expectedResult = `
@@ -45,8 +45,7 @@ describe('Translator', () => {
       }
     }`;
 
-    sut = new Translator(languageMap, inputStream);
-
+    const sut = new Translator(languageMap, inputStream);
     expect(sut.getTranslatedFile()).toBe(expectedResult);
   });
 });

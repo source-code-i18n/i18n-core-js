@@ -7,7 +7,7 @@ class Translator {
 		this.translatedTokens = [];
 		this.inputStream = inputStream;
 		this.languageMap = naturalLanguageMap;
-		this.allCharacters = ['.', '(', ')', ':', '{', '}', '[', ']', '*', '/', '-', '=', '+', '!', '@',	'#', ' ', '\n', "'", '\''];
+		this.javascriptCharacters = ['.', '(', ')', ':', '{', '}', '[', ']', '*', '/', '-', '=', '+', '!', '@',	'#', ' ', '\n', "'", '\'', '?', '<', '>'];
 	}
 
 	/**
@@ -17,7 +17,7 @@ class Translator {
 	 * @returns {bool} - True if the token is in the map. False otherwise.
 	 */
 	isKeyword(keyword) {
-		return keyword in this.languageMap;
+		return keyword in this.languageMap.keywords;
 	}
 
 	/**
@@ -26,7 +26,7 @@ class Translator {
 	 * @returns {string} - The translated keyword.
 	 */
 	translateKeyword(keyword) {
-		return this.languageMap[keyword];
+		return this.languageMap.keywords[keyword];
 	}
 
 	/**
@@ -38,7 +38,7 @@ class Translator {
 		const tokens = [];
 		[...this.inputStream].forEach((character) => {
 			// Test to see if that character is in the character arrays.
-			if(this.allCharacters.some(element => element === character)) {
+			if(this.javascriptCharacters.some(element => element === character)) {
 				if(buffer.length > 0) {
 					// Push the buffer
 					tokens.push(buffer);
