@@ -18,6 +18,7 @@ describe('Translator', () => {
     }`;
 
     const languageMap = {
+      apiSymbols: {},
       keywords: {
         si: 'if',
         esta: 'this',
@@ -44,6 +45,22 @@ describe('Translator', () => {
         return this.helloThere;
       }
     }`;
+
+    const sut = new Translator(languageMap, inputStream);
+    expect(sut.getTranslatedFile()).toBe(expectedResult);
+  });
+
+  it('translates apiSymbols properly', () => {
+    const languageMap = {
+      keywords: {},
+      apiSymbols: {
+        consola: 'console',
+        registro: 'log',
+      }
+    }
+
+    const inputStream = `consola.registro('Hola');`;
+    const expectedResult = `console.log('Hola');`;
 
     const sut = new Translator(languageMap, inputStream);
     expect(sut.getTranslatedFile()).toBe(expectedResult);
